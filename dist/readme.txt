@@ -52,7 +52,7 @@ Plugin is using [MathJax](https://www.mathjax.org/) library. It was created long
 
 = I have a problem/idea. Who should I talk with? =
 
-Write on my email: newpetya@inbox.ru
+Open an issue at plugin GitHub [repository](https://github.com/CMTV/wordpress-plugin-insert-math).
 
 == Screenshots ==
 
