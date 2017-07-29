@@ -1,6 +1,7 @@
 <?php
 /*
 Plugin Name: Insert math
+Plugin URI: https://github.com/CMTV/wordpress-plugin-insert-math
 Text Domain: insert-math
 Domain Path: /languages
 Description: Fast and handy insert any math formulas in your posts.
