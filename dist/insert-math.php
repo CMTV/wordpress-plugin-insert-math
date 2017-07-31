@@ -5,7 +5,7 @@ Plugin URI: https://github.com/CMTV/wordpress-plugin-insert-math
 Text Domain: insert-math
 Domain Path: /languages
 Description: Fast and handy insert any math formulas in your posts.
-Version: 1.0
+Version: 2.0
 Author: CMTV
 License: GPL3
 */
@@ -14,11 +14,12 @@ License: GPL3
 define('MATH_PLUGIN_MATHJAX_URL', '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js');
 
 /** Link to jQuery UI stylesheet */
-define('MATH_PLUGIN_JQUERY_UI_CSS_URL', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+define('MATH_PLUGIN_JQUERY_UI_CSS_URL', plugin_dir_url(__FILE__) . 'dependencies/jquery-ui/jquery-ui.css');
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* Adding MathJax support for both frontend and admin panel */
 /* ------------------------------------------------------------------------------------------------------------------ */
+
 function math_plugin_mathjax_support() {
 	/* Configuring MathJax */
 	wp_enqueue_script('mathjax-config', plugin_dir_url(__FILE__) . 'mathjax/config.js');
@@ -46,6 +47,9 @@ function math_plugin_jquery_ui() {
 	wp_enqueue_script('jquery-ui-dialog');
 	wp_enqueue_script('jquery-ui-resizable');
 
+	/* Color picker */
+	wp_enqueue_script('iris');
+
 	/* Adding default jQuery UI stylesheet */
 	wp_enqueue_style('jquery-ui-css', MATH_PLUGIN_JQUERY_UI_CSS_URL);
 
@@ -61,7 +65,7 @@ function math_plugin_dialog() {
 		<div title="<?php _e('Inserting math', 'insert-math'); ?>" id="math_plugin-insert-math-dialog">
 
 			<div class="math_plugin-display-mode-container math_plugin-container">
-                <div class="math_plugin-label"><?php _e('Insert math as...', 'insert-math'); ?></div>
+                <div class="math_plugin-label"><?php _e('Insert math as', 'insert-math'); ?></div>
                 <div class="math_plugin-display-button math_plugin-display-value-block math_plugin-checked">
                     <?php _e('Block', 'insert-math'); ?>
                 </div>
@@ -69,6 +73,32 @@ function math_plugin_dialog() {
                     <?php _e('Inline', 'insert-math'); ?>
                 </div>
 			</div>
+
+            <div class="math_plugin-additional-settings-container math_plugin-container">
+                <div class="math_plugin-header">
+                    <?php _e('Additional settings', 'insert-math'); ?>
+                </div>
+
+                <div class="math_plugin-additional-settings">
+                    <div class="math_plugin-default-color-container math_plugin-additional-container">
+                        <div class="math_plugin-label"><?php _e('Formula color', 'insert-math'); ?></div>
+                        <div class="math_plugin-color-button math_plugin-color-default math_plugin-checked"><?php _e('Text color', 'insert-math'); ?></div>
+                        <div class="math_plugin-color-button math_plugin-color-custom" style="color: #333333;">
+                            #333333
+                        </div>
+                    </div>
+
+                    <div class="math_plugin-formula-id math_plugin-additional-container">
+                        <label for="math_plugin-formula-id" class="math_plugin-label"><?php _e('Formula ID', 'insert-math'); ?></label>
+                        <input id="math_plugin-formula-id" class="math_plugin-input" type="text">
+                    </div>
+
+                    <div class="math_plugin-formula-classes math_plugin-additional-container">
+                        <label for="math_plugin-formula-classes" class="math_plugin-label"><?php _e('Formula classes', 'insert-math'); ?></label>
+                        <input id="math_plugin-formula-classes" class="math_plugin-input" type="text">
+                    </div>
+                </div>
+            </div>
 
 			<div class="math_plugin-expression-container math_plugin-container">
 				<div class="math_plugin-label">
@@ -87,20 +117,6 @@ function math_plugin_dialog() {
 			</div>
 
             <div class="math_plugin-insert-button"><?php _e('Insert', 'insert-math'); ?></div>
-
-			<div class="math_plugin-ad">
-                <div class="math_plugin-ad-inner">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- [Wordpress Плагин] Math -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:320px;height:50px"
-                         data-ad-client="ca-pub-8094912170389944"
-                         data-ad-slot="9637138293"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-			</div>
 
 		</div>
 	<?php
@@ -156,6 +172,7 @@ add_action('admin_init', "math_plugin_add_editor_style");
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* Translations */
 /* ------------------------------------------------------------------------------------------------------------------ */
+
 function math_plugin_load_textdomain() {
 	load_plugin_textdomain('insert-math', FALSE, basename(dirname(__FILE__)) . '/languages/');
 }

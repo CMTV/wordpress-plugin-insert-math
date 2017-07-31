@@ -7,6 +7,10 @@
     
     font-size: 100%;
     
+    .math_plugin-label {
+        margin-right: 2em;
+    }
+    
     .math_plugin-container {
         margin: 1.25em 0;
     }
@@ -27,8 +31,11 @@
             border-radius: 3px;
             background: #f7f7f7;
             box-shadow: 0 1px 0 #ccc;
+    
+            width: 85px;
+            text-align: center;
             
-            padding: 0.5em 2em;
+            padding: 0.5em 0;
             margin: 0 0.5em;
             
             transition: border-color 0.15s, color 0.15s, background 0.15s;
@@ -54,6 +61,132 @@
             
             &.math_plugin-checked:hover {
                 cursor: pointer;
+            }
+        }
+    }
+    
+    /* Additional settings */
+    .math_plugin-additional-settings-container {
+        transition: border-color 0.25s;
+        
+        &:not(._showing) {
+            border-bottom-color: transparent;
+        }
+        
+        .math_plugin-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            color: #949494;
+            
+            transition: background 0.15s, color 0.25s;
+            
+            padding: 0.5em 0;
+            
+            &:hover {
+                color: #008ecd;
+                cursor: pointer;
+                background: #F0FBFF;
+            }
+            
+            &._showing {
+                color: #008ecd;
+                background: #F0FBFF;
+            }
+            
+            &._showing:hover {
+                color: #333;
+                background: #ebebeb;
+            }
+        }
+        
+        .math_plugin-additional-settings {
+            display: none;
+            
+            border-bottom: 3px solid #F0FBFF;
+            
+            .math_plugin-additional-container {
+                margin: 1em 0;
+            }
+            
+            /* Choosing color */
+            .math_plugin-default-color-container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+    
+                position: relative;
+                
+                .iris-picker {
+                    position: absolute;
+                    z-index: 10;
+                    top: 40px;
+                    right: 0;
+                    box-shadow: 0 0 7px rgba(0, 0, 0, 0.31);
+                }
+                
+                .math_plugin-label {
+                    flex: 1;
+                }
+    
+                .math_plugin-color-button {
+                    color: #555;
+                    border: 1px solid #ccc;
+                    border-radius: 3px;
+                    background: #f7f7f7;
+                    box-shadow: 0 1px 0 #ccc;
+        
+                    width: 85px;
+                    text-align: center;
+                    
+                    padding: 0.5em 0;
+                    margin: 0 0.5em;
+        
+                    transition: border-color 0.15s, color 0.15s, background 0.15s;
+        
+                    &:not(.math_plugin-checked):hover {
+                        cursor: pointer;
+            
+                        color: #23282d;
+                        border-color: #999;
+                        background: #fafafa;
+                    }
+        
+                    &.math_plugin-checked {
+                        color: #008ecd;
+                        border-color: #008ecd;
+                        background: #F0FBFF;
+                        box-shadow: 0 1px 0 #008ecd;
+                    }
+        
+                    &.math_plugin-checked:hover {
+                        cursor: pointer;
+                    }
+                    
+                    &.math_plugin-color-custom {
+                        margin-right: 0;
+                    }
+                    
+                    &.math_plugin-color-custom.math_plugin-checked {
+                        background: #fff;
+                    }
+                }
+            }
+            
+            /* Formula ID and classes */
+            .math_plugin-formula-id, .math_plugin-formula-classes {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                
+                .math_plugin-label {
+                    flex: 1;
+                }
+                
+                .math_plugin-input {
+                    width: 185px;
+                }
             }
         }
     }
@@ -100,12 +233,11 @@
     .math_plugin-insert-button {
         border: 1px solid;
         border-radius: 3px;
-    
         
         padding: 0.75em 3em;
         
-        margin-bottom: 1.1em;
-    
+        margin-bottom: 0.25em;
+        
         font-size: 120%;
         color: #fff;
         text-align: center;
@@ -127,19 +259,6 @@
             background: #0073aa;
             border-color: #006799;
             box-shadow: inset 0 2px 0 #006799;
-        }
-    }
-    
-    /* Ad */
-    .math_plugin-ad {
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        
-        .math_plugin-ad-inner {
-            width: auto;
-            height: auto;
-            overflow: hidden;
         }
     }
 }
