@@ -3,9 +3,6 @@ window.MathJax = {
     jax: ["input/TeX","output/HTML-CSS"],
     extensions: ["tex2jax.js"],
 
-    /* No image fonts. Sorry IE6 :( */
-    imageFont: null,
-
     /* Removing all distracting MathJax messages */
     messageStyle: "none",
 

@@ -17,7 +17,8 @@ gulp.task('scripts', () => {
     return gulp.src('src/**/*.js')
         .pipe(plumber(function (error) { console.log(error); this.emit('end'); }))
         .pipe(babel({ presets: ['es2015'] }))
-        .pipe(replace('$', 'jQuery'))
+        .pipe(replace('$(', 'jQuery('))
+        .pipe(replace('$.', 'jQuery.'))
         .pipe(uglify_js())
         .pipe(gulp.dest('dist'));
 });
